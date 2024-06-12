@@ -1,0 +1,1 @@
+// create a clear user -> info -> users.create -> store user in a database
