@@ -84,7 +84,7 @@ const CreatePodcast = () => {
                 <FormItem className="flex flex-col gap-2.5 ">
                   <FormLabel className="text-16 font-bold text-white-1">Title</FormLabel>
                   <FormControl>
-                    <Input className="input-class focus-visible:ring-orange-1" placeholder="What's your podcast name?" {...field} />
+                    <Input className="input-class focus-visible:ring-offset-orange-1" placeholder="What's your podcast name?" {...field} />
                   </FormControl>
                   <FormMessage className="text-white-1" />
                 </FormItem>
@@ -95,10 +95,10 @@ const CreatePodcast = () => {
                 Select your podcast&apos;s voice
               </Label>
               <Select onValueChange={(value) => setVoiceType(value.toLowerCase())}>
-                <SelectTrigger className={cn('text-16 w-full border-none bg-black-1 text-gray-1')}>
+                <SelectTrigger className={cn('text-16 w-full border-none bg-black-1 text-gray-1 focus:ring-offset-orange-1')}>
                   <SelectValue placeholder="No voice selected" />
                 </SelectTrigger>
-                <SelectContent className="text-16 border-none bg-black-1 font-bold text-white-1 focus:ring-orange-1">
+                <SelectContent className="text-16 border-none bg-black-1 font-bold text-white-1">
                   {voiceCategories.map((voice) => (
                     <SelectItem key={voice} value={voice} className="capitalize focus:bg-orange-1">
                       {voice}
@@ -117,7 +117,7 @@ const CreatePodcast = () => {
                 <FormItem className="flex flex-col gap-2.5 ">
                   <FormLabel className="text-16 font-bold text-white-1">Description</FormLabel>
                   <FormControl>
-                    <Textarea className="input-class focus-visible:ring-orange-1" placeholder="Write a short description" {...field} />
+                    <Textarea className="input-class focus-visible:ring-offset-orange-1" placeholder="What's your podcast about?" {...field} />
                   </FormControl>
                   <FormMessage className="text-white-1" />
                 </FormItem>
@@ -125,7 +125,15 @@ const CreatePodcast = () => {
             />
           </div>
           <div className="flex flex-col pt-10">
-            <GeneratePodcast />
+            <GeneratePodcast
+              setAudioStorageId={setAudioStorageId}
+              setAudio={setAudioURL}
+              voiceType={voiceType}
+              audio={audioURL}
+              voicePrompt={voicePrompt}
+              setVoicePrompt={setVoicePrompt}
+              setAudioDuration={setAudioDuration}
+            />
             <GenerateThumbnail />
             <div className="mt-10 w-full">
               <Button type="submit" className="text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1">
