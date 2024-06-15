@@ -7,7 +7,7 @@ import { api } from "@/convex/_generated/api";
 
 const Home = () => {
 
-  const podcasts = useQuery(api.podcasts.getPodcasts);
+  const podcasts = useQuery(api.podcasts.getPremierPodcasts);
 
   return (
     <div className='mt-9 flex flex-col gap-9'>
