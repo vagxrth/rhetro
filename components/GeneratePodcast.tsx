@@ -8,7 +8,6 @@ import { useAction, useMutation } from 'convex/react'
 import { api } from '@/convex/_generated/api'
 import { v4 as uuidv4 } from 'uuid'
 import { useUploadFiles } from '@xixixao/uploadstuff/react'
-import { set } from 'react-hook-form'
 import { useToast } from "@/components/ui/use-toast"
 
 
@@ -18,9 +17,9 @@ const useGeneratePodcast = ({setAudio, voiceType, voicePrompt, setAudioStorageId
 
     const { toast } = useToast()
 
-    const generateUploadUrl = useMutation(api.files.generateUploadUrl);
+    const generateUploadURL = useMutation(api.files.generateUploadURL);
 
-    const { startUpload } = useUploadFiles(generateUploadUrl);
+    const { startUpload } = useUploadFiles(generateUploadURL);
 
     const getPodcastAudio = useAction(api.openai.generateAudio);
 

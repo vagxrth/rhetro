@@ -1,7 +1,7 @@
 import { v } from "convex/values";
 import { mutation } from "./_generated/server";
  
-export const generateUploadUrl = mutation({
+export const generateUploadURL = mutation({
   args: {
 
   },
