@@ -7,8 +7,8 @@ export const createPodcast = mutation({
     audioStorageId: v.id("_storage"),
     podcastTitle: v.string(),
     podcastDescription: v.string(),
-    audioUrl: v.string(),
-    imageUrl: v.string(),
+    audioURL: v.string(),
+    imageURL: v.string(),
     imageStorageId: v.id("_storage"),
     voicePrompt: v.string(),
     imagePrompt: v.string(),
@@ -37,8 +37,8 @@ export const createPodcast = mutation({
       user: user[0]._id,
       podcastTitle: args.podcastTitle,
       podcastDescription: args.podcastDescription,
-      audioURL: args.audioUrl,
-      imageURL: args.imageUrl,
+      audioURL: args.audioURL,
+      imageURL: args.imageURL,
       imageStorageId: args.imageStorageId,
       author: user[0].name,
       authorId: user[0].clerkId,
@@ -82,7 +82,7 @@ export const getPodcastByVoiceType = query({
   },
 });
 
-//et all the podcasts.
+//get all the podcasts.
 export const getAllPodcasts = query({
   handler: async (ctx) => {
     return await ctx.db.query("podcasts").order("desc").collect();

@@ -16,7 +16,7 @@ const Home = () => {
 
         <div className='podcast_grid'>
           {podcasts?.map(({ _id, podcastTitle, podcastDescription, imageURL }) => (
-            <PodcastCard key={_id} imgURL={imageURL} title={podcastTitle} description={podcastDescription} podcastId={_id} />
+            <PodcastCard key={_id} imageURL={imageURL} title={podcastTitle} description={podcastDescription} podcastId={_id} />
           ))}
         </div>
       </section>
