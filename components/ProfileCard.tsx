@@ -59,11 +59,11 @@ const ProfileCard = ({
               Verified Creator
             </h2>
           </figure>
-          <h1 className="text-32 font-extrabold tracking-[-0.32px] text-white-1">
+          <h1 className="text-32 font-extrabold tracking-[-0.32px] text-white-1 mb-5">
             {userFirstName}
           </h1>
         </div>
-        <figure className="flex gap-3 py-6">
+        {/* <figure className="flex gap-3 py-6">
           <Image
             src="/icons/headphone.svg"
             width={24}
@@ -74,7 +74,7 @@ const ProfileCard = ({
             {podcastData?.listeners} &nbsp;
             <span className="font-normal text-white-2">monthly listeners</span>
           </h2>
-        </figure>
+        </figure> */}
         {podcastData?.podcasts.length > 0 && (
           <Button
             onClick={playRandomPodcast}
@@ -86,7 +86,7 @@ const ProfileCard = ({
               height={20}
               alt="random play"
             />{" "}
-            &nbsp; Play a random podcast
+            &nbsp; Tune into a podcast
           </Button>
         )}
       </div>

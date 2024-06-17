@@ -75,9 +75,9 @@ const CreatePodcast = () => {
     try {
       setSubmitting(true);
       if (!audioURL || !imageURL || !voiceType) {
-        toast({
-          title: "Please provide audio and image",
-        })
+        // toast({
+        //   title: "Please provide audio and image",
+        // })
         setSubmitting(false);
         throw new Error("Please provide audio and image");
       }
@@ -103,11 +103,11 @@ const CreatePodcast = () => {
       router.push('/');
 
     } catch (error) {
-      console.log("Error creating the podcast", error);
-      toast({
-        title: "Error creating the podcast",
-        variant: 'destructive'
-      })
+      // console.log("Error creating the podcast", error);
+      // toast({
+      //   title: "Error creating the podcast",
+      //   variant: 'destructive'
+      // })
       setSubmitting(false);
     }
   }

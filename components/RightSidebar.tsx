@@ -54,8 +54,8 @@ const RightSidebar = () => {
                 </h2>
               </figure>
               <div className='flex items-center'>
-                <p className='text-12 font-normal'>
-                  {podcaster.totalPodcasts} Podcasts
+                <p className='text-12 font-normal text-white-1'>
+                  {podcaster.totalPodcasts} {podcaster.totalPodcasts === 1 ? 'Podcast' : 'Podcasts'}
                 </p>
               </div>
             </div>

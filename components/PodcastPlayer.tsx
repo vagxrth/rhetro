@@ -112,7 +112,7 @@ const PodcastPlayer = () => {
                     onLoadedMetadata={handleLoadedMetadata}
                     onEnded={handleAudioEnded}
                 />
-                <div className="flex items-center gap-4 max-md:hidden">
+                <div className="flex-center items-center gap-4 max-md:hidden">
                     <Link href={`/podcast/${audio?.podcastId}`}>
                         <Image
                             src={audio?.imageURL! || "/images/player1.png"}
@@ -129,7 +129,7 @@ const PodcastPlayer = () => {
                         <p className="text-12 font-normal text-white-2">{audio?.author}</p>
                     </div>
                 </div>
-                <div className="flex-center cursor-pointer gap-3 md:gap-6">
+                <div className="flex-center cursor-pointer justify-center gap-3 md:gap-6">
                     <div className="flex items-center gap-1.5">
                         <Image
                             src={"/icons/reverse.svg"}
@@ -158,7 +158,7 @@ const PodcastPlayer = () => {
                         />
                     </div>
                 </div>
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-6 ml-30">
                     <h2 className="text-16 font-normal text-white-2 max-md:hidden">
                         {formatTime(duration)}
                     </h2>
