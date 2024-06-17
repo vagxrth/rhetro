@@ -55,13 +55,14 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
   }
 
   const generateImage = async () => {
+    setImageLoading(true);
     try {
-      const response = await handleGenerateThumbnail({prompt: imagePrompt});
-    const blob = new Blob([response], { type: 'image/png' });
-    handleImage(blob, `thumbnail-${uuidv4()}.png`);
-    toast({
-      title: "Image generated successfully",
-    })
+      const response = await handleGenerateThumbnail({ prompt: imagePrompt });
+      const blob = new Blob([response], { type: 'image/png' });
+      handleImage(blob, `thumbnail-${uuidv4()}.png`);
+      toast({
+        title: "Image generated successfully",
+      })
     } catch (error) {
       console.log("Error generating thumbnail", error);
       toast({
@@ -69,14 +70,14 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
         variant: 'destructive'
       })
     }
-    
+
   }
 
   const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     try {
       const files = e.target.files;
-      if(!files) return;
+      if (!files) return;
       const file = files[0];
       const blob = await file.arrayBuffer().then((ab) => new Blob([ab]));
       handleImage(blob, file.name);
@@ -118,7 +119,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
                   <Loader size={20} className="animate-spin ml-2" />
                 </>
               ) : (
-                'Generate'
+                'Generate Thumbnail'
               )}
             </Button>
           </div>
