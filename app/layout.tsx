@@ -8,9 +8,9 @@ const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Rhetro",
-  description: "An AI Podcast Generation App",
+  description: "An AI Podcast App",
   icons: {
-    icon: "/icons/logo.svg",
+    icon: "/icons/rhetro.png",
   }
 };
 
