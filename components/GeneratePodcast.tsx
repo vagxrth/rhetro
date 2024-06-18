@@ -80,7 +80,7 @@ const GeneratePodcast = (props: GeneratePodcastProps) => {
                 <Label className='text-16 font-bold text-white-1'>
                     Prompt to generate podcast
                 </Label>
-                <Textarea className='input-class font-light focus-visible:ring-offset-orange-1' placeholder='Enter text to generate podcast' rows={5} value={props.voicePrompt} onChange={(e) => props.setVoicePrompt(e.target.value)} />
+                <Textarea className='input-class font-light focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-1 focus-visible:ring-offset-0' placeholder='Enter text to generate podcast' rows={5} value={props.voicePrompt} onChange={(e) => props.setVoicePrompt(e.target.value)} />
             </div>
             <div className='mt-5 w-full max-w-[200px]'>
                 <Button type="submit" className="text-16 bg-orange-1 py-4 font-bold text-white-1" onClick={generatePodcast}>

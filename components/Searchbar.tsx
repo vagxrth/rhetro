@@ -25,7 +25,7 @@ const Searchbar = () => {
 
   return (
     <div className='relative mt-8 block'>
-        <Input className='input-class py-6 pl-12 focus-visible:ring-offset-orange-1' placeholder='What do you want to listen to?' value={search} onChange={(e) => setSearch(e.target.value)} onLoad={() => setSearch('')} />
+        <Input className='input-class py-6 pl-12 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-1 focus-visible:ring-offset-0' placeholder='What do you want to listen to?' value={search} onChange={(e) => setSearch(e.target.value)} onLoad={() => setSearch('')} />
         <Image src='/icons/search.svg' alt='search' height={20} width={20} className='absolute left-4 top-3.5'/>
     </div>
   )

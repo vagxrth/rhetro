@@ -109,7 +109,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
             <Label className='text-16 font-bold text-white-1'>
               Prompt to generate podcast
             </Label>
-            <Textarea className='input-class font-light focus-visible:ring-offset-orange-1' placeholder='Enter text to generate thumbnail' rows={5} value={imagePrompt} onChange={(e) => setImagePrompt(e.target.value)} />
+            <Textarea className='input-class font-light focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-1 focus-visible:ring-offset-0' placeholder='Enter text to generate thumbnail' rows={5} value={imagePrompt} onChange={(e) => setImagePrompt(e.target.value)} />
           </div>
           <div className='w-full max-w-[200px]'>
             <Button type="submit" className="text-16 bg-orange-1 py-4 font-bold text-white-1" onClick={generateImage}>
