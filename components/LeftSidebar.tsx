@@ -33,7 +33,7 @@ const LeftSidebar = () => {
                         'bg-nav-focus border-r-4 border-orange-1': isActive
                     })}>
                         <Image src={imgURL} alt={label} width={24} height={24} />
-                        <p>
+                        <p className='font-bold'>
                             {label}
                         </p>
                     </Link>
@@ -41,7 +41,7 @@ const LeftSidebar = () => {
             </nav>
             <SignedOut>
                 <div className='flex-center w-full pb-14 max-lg:px-4 lg:pr-8'>
-                    <Button asChild className='text-16 w-full bg-orange-1 font-extrabold'>
+                    <Button asChild className='text-16 w-full bg-black-2 hover:bg-orange-1 font-bold'>
                         <Link href='/signin'>
                             Sign in
                         </Link>
@@ -50,7 +50,7 @@ const LeftSidebar = () => {
             </SignedOut>
             <SignedIn>
                 <div className='flex-center w-full pb-14 max-lg:px-4 lg:pr-8'>
-                    <Button className='text-16 w-full bg-orange-1 font-extrabold' onClick={() => signOut(() => router.push('/'))}>
+                    <Button className='text-16 w-full bg-black-2 hover:bg-orange-1 font-bold' onClick={() => signOut(() => router.push('/'))}>
                         Sign out
                     </Button>
                 </div>

@@ -15,6 +15,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className
         )}
         ref={ref}
+        style={{ color: '#F5F5F5' }}
         {...props}
       />
     )
