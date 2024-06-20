@@ -41,7 +41,7 @@ const LeftSidebar = () => {
             </nav>
             <SignedOut>
                 <div className='flex-center w-full pb-14 max-lg:px-4 lg:pr-8'>
-                    <Button asChild className='text-16 w-full bg-black-2 hover:bg-orange-1 font-bold'>
+                    <Button asChild className='text-16 w-full bg-orange-1 hover:bg-black-2 font-bold'>
                         <Link href='/signin'>
                             Sign in
                         </Link>

@@ -23,6 +23,7 @@ const SelectTrigger = React.forwardRef<
       className
     )}
     {...props}
+    style={{ color: '#F5F5F5' }}
   >
     {children}
     <SelectPrimitive.Icon asChild>

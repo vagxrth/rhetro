@@ -2,7 +2,7 @@
 import { useMutation } from "convex/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { api } from "@/convex/_generated/api";
 import { useAudio } from '@/providers/AudioProvider';
@@ -30,6 +30,8 @@ const PodcastDetailPlayer = ({
   const [isDeleting, setIsDeleting] = useState(false);
   const deletePodcast = useMutation(api.podcasts.deletePodcast);
 
+  const menuRef = useRef<HTMLDivElement>(null);
+
   const handleDelete = async () => {
     try {
       await deletePodcast({ podcastId, imageStorageId, audioStorageId });
@@ -45,6 +47,23 @@ const PodcastDetailPlayer = ({
       });
     }
   };
+
+  const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsDeleting(false);
+    }
+  };
+
+  useEffect(() => {
+    // Attach the event listeners to detect clicks and touches outside the menu
+    document.addEventListener('mousedown', handleClickOutside, true);
+    document.addEventListener('touchstart', handleClickOutside, true);
+    return () => {
+      // Clean up the event listeners
+      document.removeEventListener('mousedown', handleClickOutside, true);
+      document.removeEventListener('touchstart', handleClickOutside, true);
+    };
+  }, []);
 
   const handlePlay = () => {
     setAudio({
@@ -116,6 +135,7 @@ const PodcastDetailPlayer = ({
           />
           {isDeleting && (
             <div
+              ref={menuRef}
               className="absolute -left-32 -top-2 z-10 flex w-32 cursor-pointer justify-center gap-2 rounded-md bg-black-6 py-1.5 hover:bg-black-2"
               onClick={handleDelete}
             >
