@@ -24,3 +24,5 @@ A cutting-edge AI podcast application that simplifies content creation. It conve
 ## Video
 
 
+https://github.com/vagxrth/rhetro/assets/83217083/6589899b-a85f-4fc4-be19-c2f559473f05
+
