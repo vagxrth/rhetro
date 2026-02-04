@@ -124,8 +124,6 @@ const PodcastDetailPlayer = ({
               </svg>
               Play
             </Button>
-
-            <span className="text-[14px] text-gray-1">Premium Only</span>
           </div>
         </div>
       </div>
