@@ -29,7 +29,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
 
   const { startUpload } = useUploadFiles(generateUploadURl);
 
-  const handleGenerateThumbnail = useAction(api.openai.generateThumbnail);
+  const handleGenerateThumbnail = useAction(api.gemini.generateThumbnail);
 
   const handleImage = async (blob: Blob, fileName: string) => {
     setImageLoading(true);

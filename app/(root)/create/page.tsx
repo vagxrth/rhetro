@@ -35,7 +35,7 @@ import { useMutation } from "convex/react"
 import { api } from "@/convex/_generated/api"
 import { useRouter } from "next/navigation"
 
-const voiceCategories = ['Alloy', 'Echo', 'Fable', 'Nova', 'Onyx', 'Shimmer'];
+const voiceCategories = ['Rachel', 'Antonio', 'Bella', 'Ellis', 'Josh', 'Jean'];
 
 
 const formSchema = z.object({
@@ -148,7 +148,7 @@ const CreatePodcast = () => {
                   ))}
                 </SelectContent>
                 {voiceType && (
-                  <audio src={`/${voiceType}.mp3`} autoPlay className="hidden"></audio>
+                  <audio src={`/audio/${voiceType}.mp3`} autoPlay className="hidden"></audio>
                 )}
               </Select>
             </div>

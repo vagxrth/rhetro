@@ -21,7 +21,7 @@ const useGeneratePodcast = ({setAudio, voiceType, voicePrompt, setAudioStorageId
 
     const { startUpload } = useUploadFiles(generateUploadURL);
 
-    const getPodcastAudio = useAction(api.openai.generateAudio);
+    const getPodcastAudio = useAction(api.elevenlabs.generateAudio);
 
     const getAudioURL = useMutation(api.podcasts.getURL);
 
