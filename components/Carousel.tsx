@@ -43,17 +43,20 @@ const EmblaCarousel = ({ podcasters }: CarouselProps) => {
                         className='carousel_box group'
                         onClick={() => router.push(`/podcasts/${item.podcast[0]?.podcastId}`)}
                     >
-                        <Image
-                            src={item.podcast[0]?.imageURL || item.imageURL}
-                            alt='card'
-                            fill
-                            className='absolute size-full object-cover transition-transform duration-500 group-hover:scale-105'
-                        />
-                        {/* Gradient overlay */}
-                        <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent' />
+                        {/* Thumbnail */}
+                        <div className='relative w-full aspect-square overflow-hidden'>
+                            <Image
+                                src={item.podcast[0]?.imageURL || item.imageURL}
+                                alt='card'
+                                fill
+                                className='absolute size-full object-cover'
+                            />
+                            {/* Gradient fade at bottom */}
+                            <div className='absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#1a1a1c] to-transparent' />
+                        </div>
 
                         {/* Content */}
-                        <div className='relative z-10 flex flex-col p-4'>
+                        <div className='bg-[#1a1a1c] px-4 pb-4 flex flex-col'>
                             <h2 className='text-[14px] font-semibold text-white-1 truncate'>
                                 {item.podcast[0]?.podcastTitle}
                             </h2>

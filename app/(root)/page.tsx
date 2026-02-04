@@ -5,6 +5,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import LoaderSpinner from '@/components/LoaderSpinner';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 const Home = () => {
@@ -25,25 +26,30 @@ const Home = () => {
           {/* Featured Cards - Large Format */}
           <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
             {podcasts.slice(0, 2).map((podcast, index) => (
-              <div
+              <Link
+                href={`/podcasts/${podcast._id}`}
                 key={podcast._id}
                 className='featured-card group cursor-pointer overflow-hidden'
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className='relative aspect-[16/10] overflow-hidden'>
+                {/* Thumbnail Section */}
+                <div className='relative aspect-[16/9] overflow-hidden'>
                   <Image
                     src={podcast.imageURL}
                     alt={podcast.podcastTitle}
                     fill
                     className='object-cover transition-transform duration-500 group-hover:scale-105'
                   />
-                  <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent' />
-                  <div className='absolute bottom-0 left-0 right-0 p-5'>
-                    <span className='featured-label mb-2 block'>Featured</span>
-                    <p className='text-[14px] text-white-2 line-clamp-2'>{podcast.podcastDescription}</p>
-                  </div>
+                  {/* Gradient fade at bottom */}
+                  <div className='absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#1a1a1c] to-transparent' />
                 </div>
-              </div>
+
+                {/* Content Section */}
+                <div className='bg-[#1a1a1c] px-5 pb-5'>
+                  <span className='featured-label mb-2 block'>Featured</span>
+                  <p className='text-[14px] text-white-2/90 line-clamp-2 leading-relaxed'>{podcast.podcastDescription}</p>
+                </div>
+              </Link>
             ))}
           </div>
         </section>

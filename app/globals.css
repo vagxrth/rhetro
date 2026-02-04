@@ -44,7 +44,8 @@ body {
   }
 
   .carousel_box {
-    @apply relative flex h-fit aspect-square w-full flex-none cursor-pointer flex-col justify-end rounded-apple-lg overflow-hidden shadow-card transition-transform duration-300 hover:scale-[1.02];
+    @apply relative flex w-full flex-none cursor-pointer flex-col rounded-apple-lg overflow-hidden shadow-card;
+    background: #1a1a1c;
   }
 
   .button_bold-16 {
@@ -164,15 +165,17 @@ body {
 
 .featured-card {
   @apply relative overflow-hidden rounded-apple-lg;
-  background: linear-gradient(135deg, #2D2D2E 0%, #1E1E1F 100%);
+  background: #1a1a1c;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
 }
 
-.featured-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
-  pointer-events: none;
+.featured-card:hover {
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 12px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== Player Progress Bar ===== */
