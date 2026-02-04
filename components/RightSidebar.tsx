@@ -54,7 +54,7 @@ const RightSidebar = () => {
       </section>
 
       <section className='flex flex-col gap-4'>
-        <Header headerTitle='Top Podcasters' />
+        <Header headerTitle='Top Podcasters' showSeeAll={false} />
         <div className='flex flex-col gap-2'>
           {topPodcasters?.slice(0, 5).map((podcaster, index) => (
             <div
