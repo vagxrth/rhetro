@@ -10,9 +10,6 @@ const manrope = Manrope({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Rhetro",
   description: "An AI Podcast App",
-  icons: {
-    icon: "/icons/rhetro.png",
-  }
 };
 
 export default function RootLayout({
