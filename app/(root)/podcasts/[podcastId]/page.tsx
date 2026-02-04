@@ -24,53 +24,50 @@ const PodcastDetails = ({ params: { podcastId } }: { params: { podcastId: Id<'po
   if (!similarPodcasts || !podcast) return <LoaderSpinner />
 
   return (
-    <section className='flex w-full flex-col'>
-      <header className='mt-9 flex items-center justify-between'>
-        <h1 className='text-20 font-bold text-white-1'>
-          Currently Playing
-        </h1>
-        {/* <figure className='flex gap-3'>
-          <Image src='/icons/headphone.svg' width={24} height={24} alt='headphone' />
-          <h2 className='text-16 font-bold text-white-1'>
-            {podcast?.views}
-          </h2>
-        </figure> */}
-      </header>
+    <section className='flex w-full flex-col animate-fade-in'>
+      {/* Podcast Detail Header */}
+      <div className='mt-8'>
+        <PodcastPlayerDetails isOwner={isOwner} {...podcast} podcastId={podcast._id} />
+      </div>
 
-      <PodcastPlayerDetails isOwner = {isOwner} {...podcast} podcastId={podcast._id} />
+      {/* Description Section */}
+      <div className='mt-10 pt-8 border-t border-black-4'>
+        <p className='text-[16px] leading-relaxed text-white-2'>
+          {podcast?.podcastDescription}
+        </p>
+      </div>
 
-      <p className='text-white-2 text-16 pb-8 pt-[45px] font-medium max-md:text-center '>
-        {podcast?.podcastDescription}
-      </p>
-
-      <div className='flex flex-col gap-8'>
-        <div className='flex flex-col gap-4'>
-          <h1 className='text-18 font-bold text-white-1'>
-            Transcription
-          </h1>
-          <p className='text-16 font-medium text-white-2'>
+      {/* Transcription Section */}
+      <div className='mt-10 flex flex-col gap-4'>
+        <h2 className='text-[18px] font-semibold text-white-1'>
+          Transcription
+        </h2>
+        <div className='p-5 bg-black-2 rounded-apple-lg border border-black-4'>
+          <p className='text-[15px] leading-relaxed text-white-2'>
             {podcast?.voicePrompt}
           </p>
         </div>
       </div>
 
-      <section className='mt-8 flex flex-col gap-5'>
-        <h1 className='text-20 font-bold text-white-1'>
-          Similar Podcasts
-        </h1>
+      {/* Similar Podcasts Section */}
+      <section className='mt-12 flex flex-col gap-6'>
+        <div className='flex items-center gap-2'>
+          <h1 className='section-header'>Similar Podcasts</h1>
+          <svg className='w-5 h-5 text-gray-1' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
+          </svg>
+        </div>
+
         {similarPodcasts && similarPodcasts.length > 0 ? (
-          <div className='podcast_grid'>
+          <div className='podcast_grid animate-stagger'>
             {similarPodcasts?.map(({ _id, podcastTitle, podcastDescription, imageURL }) => (
               <PodcastCard key={_id} imageURL={imageURL} title={podcastTitle} description={podcastDescription} podcastId={_id} />
             ))}
           </div>
         ) : (
-          <>
-            <EmptyState title="No similar podcasts" buttonLink = "/discover" buttonText="Discover Podcasts" />
-          </>
+          <EmptyState title="No similar podcasts" buttonLink="/discover" buttonText="Discover Podcasts" />
         )}
       </section>
-
     </section>
   )
 }

@@ -94,65 +94,125 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
   }
 
   return (
-    <>
+    <div className='flex flex-col gap-5'>
+      {/* Toggle Buttons */}
       <div className='generate_thumbnail'>
-        <Button type='button' variant='plain' className={cn('', { 'bg-black-6': aiThumbnail })} onClick={() => setAIThumbnail(true)}>
-          Generate an AI thumbnail
+        <Button
+          type='button'
+          variant='plain'
+          className={cn(
+            'flex-1 rounded-apple py-3 text-[14px] font-medium transition-all duration-200',
+            aiThumbnail ? 'bg-purple-1 text-white-1' : 'bg-transparent text-gray-1 hover:text-white-1'
+          )}
+          onClick={() => setAIThumbnail(true)}
+        >
+          <svg className='w-4 h-4 mr-2' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z' />
+          </svg>
+          AI Generate
         </Button>
-        <Button type='button' variant='plain' className={cn('', { 'bg-black-6': !aiThumbnail })} onClick={() => setAIThumbnail(false)}>
-          Upload your thumbnail
+        <Button
+          type='button'
+          variant='plain'
+          className={cn(
+            'flex-1 rounded-apple py-3 text-[14px] font-medium transition-all duration-200',
+            !aiThumbnail ? 'bg-purple-1 text-white-1' : 'bg-transparent text-gray-1 hover:text-white-1'
+          )}
+          onClick={() => setAIThumbnail(false)}
+        >
+          <svg className='w-4 h-4 mr-2' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12' />
+          </svg>
+          Upload Image
         </Button>
       </div>
+
       {aiThumbnail ? (
-        <div className='flex flex-col gap-5 mt-5'>
-          <div className='flex flex-col gap-2.5'>
-            <Label className='text-16 font-bold text-white-1'>
-              Prompt to generate podcast
+        <div className='flex flex-col gap-5'>
+          <div className='flex flex-col gap-3'>
+            <Label className='text-[15px] font-semibold text-white-1'>
+              Prompt to generate thumbnail
             </Label>
-            <Textarea className='input-class font-light focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-1 focus-visible:ring-offset-0' placeholder='Enter text to generate thumbnail' rows={5} value={imagePrompt} onChange={(e) => setImagePrompt(e.target.value)} />
+            <Textarea
+              className='input-class font-normal focus-visible:ring-purple-1 focus-visible:ring-1 focus-visible:ring-offset-0 min-h-[120px]'
+              placeholder='Describe the thumbnail you want to create...'
+              rows={5}
+              value={imagePrompt}
+              onChange={(e) => setImagePrompt(e.target.value)}
+            />
           </div>
           <div className='w-full max-w-[200px]'>
-            <Button type="submit" className="text-16 bg-orange-1 py-4 font-bold text-white-1" onClick={generateImage}>
+            <Button
+              type="button"
+              className="bg-purple-1 hover:bg-purple-2 text-white-1 font-semibold rounded-full h-10 px-6 transition-all duration-200 shadow-button text-[14px]"
+              onClick={generateImage}
+            >
               {imageLoading ? (
                 <>
                   Generating
-                  <Loader size={20} className="animate-spin ml-2" />
+                  <Loader size={16} className="animate-spin ml-2" />
                 </>
               ) : (
-                'Generate Thumbnail'
+                <>
+                  <svg className='w-4 h-4 mr-1.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z' />
+                  </svg>
+                  Generate
+                </>
               )}
             </Button>
           </div>
         </div>
       ) : (
-        <div className='image_div' onClick={() => { imageRef?.current?.click() }}>
+        <div
+          className='image_div cursor-pointer'
+          onClick={() => { imageRef?.current?.click() }}
+        >
           <Input type='file' className='hidden' ref={imageRef} onChange={(e) => uploadImage(e)} />
           {!imageLoading ? (
-            <div>
-              <Image src='/icons/upload-image.svg' width={40} height={40} alt='upload-image' />
+            <div className='flex flex-col items-center gap-4'>
+              <div className='w-16 h-16 rounded-full bg-black-4 flex items-center justify-center'>
+                <svg className='w-8 h-8 text-gray-1' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={1.5} d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12' />
+                </svg>
+              </div>
+              <div className='flex flex-col items-center gap-1'>
+                <h2 className='text-[14px] font-semibold text-purple-1'>
+                  Click to upload
+                </h2>
+                <p className='text-[12px] text-gray-1'>
+                  SVG, PNG, JPG or GIF (max. 5MB)
+                </p>
+              </div>
             </div>
           ) : (
-            <div className='text-16 flex-center font-medium text-white-1'>
+            <div className='text-[14px] flex-center font-medium text-white-1'>
               Uploading
-              <Loader size={20} className='animate-spin ml-2' />
+              <Loader size={18} className='animate-spin ml-2' />
             </div>
           )}
-          <div className='flex flex-col items-center gap-1'>
-            <h2 className='text-12 font-bold text-orange-1'>
-              Select an image
-            </h2>
-            <p className='text-12 font-normal text-gray-1'>
-              SVG, PNG, JPG or GIF
-            </p>
+        </div>
+      )}
+
+      {image && (
+        <div className='flex-center w-full'>
+          <div className='relative'>
+            <Image
+              src={image}
+              width={200}
+              height={200}
+              alt='thumbnail'
+              className='rounded-apple-lg shadow-card'
+            />
+            <div className='absolute -top-2 -right-2 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center'>
+              <svg className='w-3.5 h-3.5 text-white' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={3} d='M5 13l4 4L19 7' />
+              </svg>
+            </div>
           </div>
         </div>
       )}
-      {image && (
-        <div className='flex-center w-full'>
-          <Image src={image} width={200} height={200} alt='thumbnail' className='mt-5 ' />
-        </div>
-      )}
-    </>
+    </div>
   )
 }
 

@@ -33,18 +33,31 @@ const EmblaCarousel = ({ podcasters }: CarouselProps) => {
     const slides = podcasters && podcasters?.filter((item: any) => item.totalPodcasts > 0)
 
     if (!slides) return <LoaderSpinner />
+
     return (
         <section className="flex w-full flex-col gap-4 overflow-hidden" ref={emblaRef}>
-
             <div className='flex'>
                 {slides.slice(0, 5).map((item) => (
-                    <figure key={item._id} className='carousel_box' onClick={() => router.push(`/podcasts/${item.podcast[0]?.podcastId}`)}>
-                        <Image src={item.imageURL} alt='card' fill className='absolute size-full rounded-xl border-none' />
-                        <div className='glassmorphism-black relative z-10 flex flex-col rounded-b-xl p-4'>
-                            <h2 className='text-14 font-semibold text-white-1'>
+                    <figure
+                        key={item._id}
+                        className='carousel_box group'
+                        onClick={() => router.push(`/podcasts/${item.podcast[0]?.podcastId}`)}
+                    >
+                        <Image
+                            src={item.podcast[0]?.imageURL || item.imageURL}
+                            alt='card'
+                            fill
+                            className='absolute size-full object-cover transition-transform duration-500 group-hover:scale-105'
+                        />
+                        {/* Gradient overlay */}
+                        <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent' />
+
+                        {/* Content */}
+                        <div className='relative z-10 flex flex-col p-4'>
+                            <h2 className='text-[14px] font-semibold text-white-1 truncate'>
                                 {item.podcast[0]?.podcastTitle}
                             </h2>
-                            <p className='text-12 font-normal text-white-2'>
+                            <p className='text-[12px] text-gray-1'>
                                 {item.name}
                             </p>
                         </div>
@@ -52,7 +65,8 @@ const EmblaCarousel = ({ podcasters }: CarouselProps) => {
                 ))}
             </div>
 
-            <div className="flex justify-center gap-2 ">
+            {/* Pagination dots */}
+            <div className="flex justify-center gap-2">
                 {scrollSnaps.map((_, index) => (
                     <DotButton
                         key={index}

@@ -9,80 +9,111 @@
 }
 
 html {
-  background-color: #101114;
+  background-color: #252526;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @layer utilities {
   .input-class {
-    @apply text-16 placeholder:text-16 bg-black-1 rounded-[6px] placeholder:text-gray-1 border-none text-gray-1;
+    @apply text-16 placeholder:text-16 bg-black-2 rounded-apple placeholder:text-gray-1 border border-black-4 text-white-1 focus:border-purple-1 focus:ring-1 focus:ring-purple-1 transition-all duration-200;
   }
+
   .podcast_grid {
-    @apply grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4;
+    @apply grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
   }
+
   .right_sidebar {
-    @apply sticky right-0 top-0 flex w-[310px] flex-col overflow-y-hidden border-none bg-black-1 px-[30px] pt-8 max-xl:hidden;
+    @apply sticky right-0 top-0 flex w-[300px] flex-col overflow-y-hidden border-l border-black-4 bg-black-1 px-6 pt-8 max-xl:hidden;
   }
+
   .left_sidebar {
-    @apply sticky left-0 top-0 flex w-fit flex-col  justify-between  border-none  bg-black-1 pt-8 text-white-1 max-md:hidden lg:w-[270px] lg:pl-8;
+    @apply sticky left-0 top-0 flex w-[240px] flex-col justify-between bg-black-1 pt-6 text-white-1 max-md:hidden;
   }
+
   .generate_thumbnail {
-    @apply mt-[30px] flex w-full max-w-[520px] flex-col justify-between gap-2 rounded-lg border border-black-6 bg-black-1 px-2.5 py-2 md:flex-row md:gap-0;
+    @apply mt-6 flex w-full max-w-[520px] flex-col justify-between gap-3 rounded-apple-lg border border-black-4 bg-black-2 p-4 md:flex-row md:gap-0;
   }
+
   .image_div {
-    @apply flex-center mt-5 h-[142px] w-full cursor-pointer flex-col gap-3 rounded-xl border-[3.2px] border-dashed border-black-6 bg-black-1;
+    @apply flex-center mt-5 h-[160px] w-full cursor-pointer flex-col gap-3 rounded-apple-lg border-2 border-dashed border-black-5 bg-black-2 hover:border-purple-1 transition-colors duration-200;
   }
+
   .carousel_box {
-    @apply relative flex h-fit aspect-square w-full flex-none cursor-pointer flex-col justify-end rounded-xl border-none;
+    @apply relative flex h-fit aspect-square w-full flex-none cursor-pointer flex-col justify-end rounded-apple-lg overflow-hidden shadow-card transition-transform duration-300 hover:scale-[1.02];
   }
+
   .button_bold-16 {
-    @apply text-[16px] font-bold text-white-1 transition-all duration-500;
+    @apply text-[16px] font-semibold text-white-1 transition-all duration-300;
   }
+
   .flex-center {
     @apply flex items-center justify-center;
   }
+
   .text-12 {
-    @apply text-[12px] leading-normal;
+    @apply text-[12px] leading-normal tracking-tight;
   }
+
   .text-14 {
-    @apply text-[14px] leading-normal;
+    @apply text-[14px] leading-normal tracking-tight;
   }
+
   .text-16 {
     @apply text-[16px] leading-normal;
   }
+
   .text-18 {
     @apply text-[18px] leading-normal;
   }
+
   .text-20 {
-    @apply text-[20px] leading-normal;
+    @apply text-[20px] leading-normal font-semibold;
   }
+
   .text-24 {
-    @apply text-[24px] leading-normal;
+    @apply text-[24px] leading-tight font-bold;
   }
+
   .text-32 {
-    @apply text-[32px] leading-normal;
+    @apply text-[32px] leading-tight font-bold tracking-tight;
+  }
+
+  /* Apple-style featured label */
+  .featured-label {
+    @apply text-[11px] font-semibold uppercase tracking-wider text-purple-1;
+  }
+
+  /* Apple-style section header */
+  .section-header {
+    @apply text-[22px] font-bold text-white-1 tracking-tight;
   }
 }
 
-/* ===== custom classes ===== */
+/* ===== Apple Podcasts Style Custom Scrollbar ===== */
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 3px;
-  height: 3px;
-  border-radius: 2px;
+  width: 8px;
+  height: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #15171c;
+  background: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #222429;
-  border-radius: 50px;
+  background: #3A3A3B;
+  border-radius: 100px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #48484A;
 }
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -90,51 +121,154 @@ html {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.glassmorphism {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-.glassmorphism-auth {
-  background: rgba(6, 3, 3, 0.711);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-.glassmorphism-black {
-  background: rgba(18, 18, 18, 0.64);
-  backdrop-filter: blur(37px);
-  -webkit-backdrop-filter: blur(37px);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* ======= clerk overrides ======== */
-.cl-socialButtonsIconButton {
-  border: 2px solid #222429;
+/* ===== Glassmorphism Effects ===== */
+
+.glassmorphism {
+  background: rgba(45, 45, 46, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+.glassmorphism-auth {
+  background: rgba(30, 30, 31, 0.9);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+.glassmorphism-black {
+  background: rgba(37, 37, 38, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ===== Card Hover Effects ===== */
+
+.podcast-card {
+  @apply transition-all duration-300 ease-out;
+}
+
+.podcast-card:hover {
+  transform: translateY(-4px);
+}
+
+.podcast-card:hover .podcast-card-image {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Featured Card Styles ===== */
+
+.featured-card {
+  @apply relative overflow-hidden rounded-apple-lg;
+  background: linear-gradient(135deg, #2D2D2E 0%, #1E1E1F 100%);
+}
+
+.featured-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
+  pointer-events: none;
+}
+
+/* ===== Player Progress Bar ===== */
+
+.progress-bar {
+  @apply h-1 bg-black-4 rounded-full overflow-hidden;
+}
+
+.progress-bar-fill {
+  @apply h-full bg-purple-1 transition-all duration-100;
+}
+
+/* ===== Apple-style Navigation ===== */
+
+.nav-item {
+  @apply flex items-center gap-3 px-4 py-2.5 rounded-apple text-[15px] font-medium text-gray-1 transition-all duration-200;
+}
+
+.nav-item:hover {
+  @apply bg-black-2 text-white-1;
+}
+
+.nav-item.active {
+  @apply bg-purple-4 text-purple-1;
+}
+
+/* ===== Button Styles ===== */
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-purple-1 text-white-1 font-semibold rounded-full transition-all duration-200 hover:bg-purple-2 shadow-button;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-black-4 text-white-1 font-semibold rounded-full transition-all duration-200 hover:bg-black-5;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-transparent border border-white-3 text-white-1 font-semibold rounded-full transition-all duration-200 hover:bg-white-3/10;
+}
+
+/* ===== Search Input ===== */
+
+.search-input {
+  @apply w-full bg-black-2 border border-black-4 rounded-apple px-4 py-2.5 pl-10 text-white-1 placeholder:text-gray-1 focus:outline-none focus:border-purple-1 focus:ring-1 focus:ring-purple-1 transition-all duration-200;
+}
+
+/* ===== Subscription Card ===== */
+
+.subscription-card {
+  @apply bg-black-2 border border-black-4 rounded-apple-lg p-4 flex items-center justify-between;
+}
+
+/* ===== Clerk Overrides ===== */
+
+.cl-socialButtonsIconButton {
+  border: 1px solid #3A3A3B;
+  background: #2D2D2E;
+}
+
+.cl-socialButtonsIconButton:hover {
+  background: #3A3A3B;
+}
+
 .cl-button {
   color: white;
 }
+
 .cl-socialButtonsProviderIcon__github {
   filter: invert(1);
 }
+
 .cl-internal-b3fm6y {
-  background: #f97535;
+  background: #7225D8;
 }
+
 .cl-formButtonPrimary {
-  background: #f97535;
+  background: #7225D8;
 }
+
+.cl-formButtonPrimary:hover {
+  background: #8B3FE8;
+}
+
 .cl-footerActionLink {
-  color: #f97535;
+  color: #7225D8;
 }
+
 .cl-headerSubtitle {
-  color: #c5d0e6;
+  color: #8E8E93;
 }
+
 .cl-logoImage {
   width: 10rem;
   height: 3rem;
 }
+
 .cl-internal-4a7e9l {
   color: white;
 }
@@ -142,6 +276,33 @@ html {
 .cl-userButtonPopoverActionButtonIcon {
   color: white;
 }
+
 .cl-internal-wkkub3 {
-  color: #f97535;
+  color: #7225D8;
+}
+
+/* ===== Animation Classes ===== */
+
+.animate-stagger > * {
+  animation: fade-in 0.4s ease-out backwards;
+}
+
+.animate-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.animate-stagger > *:nth-child(2) { animation-delay: 50ms; }
+.animate-stagger > *:nth-child(3) { animation-delay: 100ms; }
+.animate-stagger > *:nth-child(4) { animation-delay: 150ms; }
+.animate-stagger > *:nth-child(5) { animation-delay: 200ms; }
+.animate-stagger > *:nth-child(6) { animation-delay: 250ms; }
+.animate-stagger > *:nth-child(7) { animation-delay: 300ms; }
+.animate-stagger > *:nth-child(8) { animation-delay: 350ms; }
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

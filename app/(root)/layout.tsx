@@ -15,13 +15,18 @@ export default function RootLayout({
     <div className="relative flex flex-col">
         <main className="relative flex bg-black-3">
             <LeftSidebar />
-            <section className="flex min-h-screen flex-1 flex-col px-4 sm:px-14">
-              <div className="mx-auto flex w-full max-w-5xl flex-col max-sm:px-4">
+            <section className="flex min-h-screen flex-1 flex-col px-6 sm:px-10 lg:px-14">
+              <div className="mx-auto flex w-full max-w-6xl flex-col max-sm:px-4">
                 <div className="flex h-16 items-center justify-between md:hidden">
-                  <Image src="/icons/logo.svg" width={30} height={30} alt="menu-icon"/>
+                  <div className='flex items-center gap-2'>
+                    <div className='flex items-center justify-center w-8 h-8 rounded-lg bg-purple-1'>
+                      <Image src="/icons/rhetro.png" width={18} height={18} alt="logo" className='brightness-200'/>
+                    </div>
+                    <span className='text-[20px] font-bold text-white-1'>Rhetro</span>
+                  </div>
                   <MobileNavigation />
                 </div>
-                <div className="flex flex-col md:pb-14">
+                <div className="flex flex-col pb-20 md:pb-14">
                   <Toaster />
                   {children}
                 </div>

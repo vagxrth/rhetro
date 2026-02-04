@@ -55,11 +55,9 @@ const PodcastDetailPlayer = ({
   };
 
   useEffect(() => {
-    // Attach the event listeners to detect clicks and touches outside the menu
     document.addEventListener('mousedown', handleClickOutside, true);
     document.addEventListener('touchstart', handleClickOutside, true);
     return () => {
-      // Clean up the event listeners
       document.removeEventListener('mousedown', handleClickOutside, true);
       document.removeEventListener('touchstart', handleClickOutside, true);
     };
@@ -78,74 +76,88 @@ const PodcastDetailPlayer = ({
   if (!imageURL || !authorImageURL) return <LoaderSpinner />;
 
   return (
-    <div className="mt-6 flex w-full justify-between max-md:justify-center">
-      <div className="flex flex-col gap-8 max-md:items-center md:flex-row">
-        <Image
-          src={imageURL}
-          width={250}
-          height={250}
-          alt="Podcast image"
-          className="aspect-square rounded-lg"
-        />
-        <div className="flex w-full flex-col gap-5 max-md:items-center md:gap-9">
-          <article className="flex flex-col gap-2 max-md:items-center">
-            <h1 className="text-32 font-extrabold tracking-[-0.32px] text-white-1">
-              {podcastTitle}
-            </h1>
-            <figure
-              className="flex cursor-pointer items-center gap-2"
-              onClick={() => {
-                router.push(`/profile/${authorId}`);
-              }}
-            >
-              <Image
-                src={authorImageURL}
-                width={30}
-                height={30}
-                alt="Caster icon"
-                className="size-[30px] rounded-full object-cover"
-              />
-              <h2 className="text-16 font-normal text-white-3">{author}</h2>
-            </figure>
-          </article>
+    <div className="flex w-full justify-between max-md:flex-col max-md:items-center">
+      <div className="flex gap-8 max-md:flex-col max-md:items-center">
+        {/* Podcast Artwork */}
+        <div className="relative group">
+          <Image
+            src={imageURL}
+            width={230}
+            height={230}
+            alt="Podcast image"
+            className="rounded-apple-lg shadow-card"
+          />
+        </div>
 
-          <Button
-            onClick={handlePlay}
-            className="text-16 w-full max-w-[250px] bg-orange-1 font-extrabold text-white-1"
+        {/* Podcast Info */}
+        <div className="flex flex-col justify-center gap-4 max-md:items-center max-md:text-center">
+          {/* Episode Meta */}
+          <div className="flex items-center gap-2 text-[12px] text-gray-1 uppercase tracking-wider">
+            <span>6 days ago</span>
+            <span>•</span>
+            <span>Episode</span>
+          </div>
+
+          {/* Title */}
+          <h1 className="text-[28px] font-bold text-white-1 tracking-tight leading-tight max-w-[500px]">
+            {podcastTitle}
+          </h1>
+
+          {/* Author */}
+          <div
+            className="flex items-center gap-2 cursor-pointer group/author"
+            onClick={() => router.push(`/profile/${authorId}`)}
           >
-            <Image
-              src="/icons/Play.svg"
-              width={20}
-              height={20}
-              alt="random play"
-            />{" "}
-            &nbsp; Play podcast
-          </Button>
+            <span className="text-[17px] font-medium text-purple-1 hover:underline">
+              {author}
+            </span>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3 mt-2">
+            <Button
+              onClick={handlePlay}
+              className="bg-purple-1 hover:bg-purple-2 text-white-1 font-semibold rounded-full px-8 h-11 transition-all duration-200 shadow-button"
+            >
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              Play
+            </Button>
+
+            <span className="text-[14px] text-gray-1">Premium Only</span>
+          </div>
         </div>
       </div>
+
+      {/* More Options */}
       {isOwner && (
-        <div className="relative mt-2">
-          <Image
-            src="/icons/three-dots.svg"
-            width={20}
-            height={30}
-            alt="Three dots icon"
-            className="cursor-pointer"
+        <div className="relative max-md:mt-6">
+          <button
             onClick={() => setIsDeleting((prev) => !prev)}
-          />
+            className="w-10 h-10 rounded-full bg-black-2 hover:bg-black-4 flex items-center justify-center transition-colors"
+          >
+            <svg className="w-5 h-5 text-white-1" fill="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="6" r="2" />
+              <circle cx="12" cy="12" r="2" />
+              <circle cx="12" cy="18" r="2" />
+            </svg>
+          </button>
+
           {isDeleting && (
             <div
               ref={menuRef}
-              className="absolute -left-32 -top-2 z-10 flex w-32 cursor-pointer justify-center gap-2 rounded-md bg-black-6 py-1.5 hover:bg-black-2"
-              onClick={handleDelete}
+              className="absolute right-0 top-12 z-10 w-40 rounded-apple-lg bg-black-2 border border-black-4 shadow-card overflow-hidden"
             >
-              <Image
-                src="/icons/delete.svg"
-                width={16}
-                height={16}
-                alt="Delete icon"
-              />
-              <h2 className="text-16 font-normal text-white-1">Delete</h2>
+              <button
+                onClick={handleDelete}
+                className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-black-4 transition-colors"
+              >
+                <svg className="w-4 h-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                <span className="text-[14px] text-red-500 font-medium">Delete</span>
+              </button>
             </div>
           )}
         </div>

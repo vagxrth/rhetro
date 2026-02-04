@@ -25,23 +25,33 @@ const ProfilePage = ({
   if (!user || !podcastsData) return <LoaderSpinner />;
 
   return (
-    <section className="mt-9 flex flex-col">
-      <h1 className="text-20 font-bold text-white-1 max-md:text-center">
-        Podcaster Profile
-      </h1>
-      <div className="mt-6 flex flex-col gap-6 max-md:items-center md:flex-row">
-        <ProfileCard
-          podcastData={podcastsData!}
-          imageURL={user?.imageURL!}
-          userFirstName={user?.name!}
-        />
+    <section className="mt-8 flex flex-col animate-fade-in">
+      {/* Profile Header - Apple Podcasts Channel Style */}
+      <div className="relative mb-10">
+        {/* Background gradient */}
+        <div className="absolute inset-0 h-[200px] bg-gradient-to-b from-purple-1/20 to-transparent rounded-apple-xl -z-10" />
+
+        <div className="pt-8">
+          <ProfileCard
+            podcastData={podcastsData!}
+            imageURL={user?.imageURL!}
+            userFirstName={user?.name!}
+          />
+        </div>
       </div>
-      <section className="mt-9 flex flex-col gap-5">
-        <h1 className="text-20 font-bold text-white-1">All Podcasts</h1>
+
+      {/* All Podcasts Section */}
+      <section className="flex flex-col gap-6">
+        <div className="flex items-center gap-2">
+          <h1 className="section-header">Top Shows</h1>
+          <svg className='w-5 h-5 text-gray-1' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
+          </svg>
+        </div>
+
         {podcastsData && podcastsData.podcasts.length > 0 ? (
-          <div className="podcast_grid">
+          <div className="podcast_grid animate-stagger">
             {podcastsData?.podcasts
-              ?.slice(0, 4)
               .map((podcast) => (
                 <PodcastCard
                   key={podcast._id}

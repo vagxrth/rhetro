@@ -38,6 +38,7 @@ export const getTopUserByPodcastCount = query({
           podcast: sortedPodcasts.map((p) => ({
             podcastTitle: p.podcastTitle,
             podcastId: p._id,
+            imageURL: p.imageURL,
           })),
         };
       })

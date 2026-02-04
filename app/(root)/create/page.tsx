@@ -75,9 +75,6 @@ const CreatePodcast = () => {
     try {
       setSubmitting(true);
       if (!audioURL || !imageURL || !voiceType) {
-        // toast({
-        //   title: "Please provide audio and image",
-        // })
         setSubmitting(false);
         throw new Error("Please provide audio and image");
       }
@@ -103,46 +100,46 @@ const CreatePodcast = () => {
       router.push('/');
 
     } catch (error) {
-      // console.log("Error creating the podcast", error);
-      // toast({
-      //   title: "Error creating the podcast",
-      //   variant: 'destructive'
-      // })
       setSubmitting(false);
     }
   }
 
   return (
-    <section className="mt-10 flex flex-col">
-      <h1 className='text-20 font-bold text-white-1'>Create Podcast</h1>
+    <section className="mt-8 flex flex-col animate-fade-in">
+      <h1 className='section-header'>Create Podcast</h1>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="mt-12 flex w-full flex-col">
-          <div className="flex flex-col gap-[30px] border-b border-black-5 pb-10">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="mt-10 flex w-full flex-col">
+          <div className="flex flex-col gap-8 border-b border-black-4 pb-10">
             <FormField
               control={form.control}
               name="podcastTitle"
               render={({ field }) => (
-                <FormItem className="flex flex-col gap-2.5 ">
-                  <FormLabel className="text-16 font-bold text-white-1">Title</FormLabel>
+                <FormItem className="flex flex-col gap-3">
+                  <FormLabel className="text-[15px] font-semibold text-white-1">Title</FormLabel>
                   <FormControl>
-                    <Input className="input-class focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-1 focus-visible:ring-offset-0" placeholder="What's your podcast name?" {...field} />
+                    <Input
+                      className="input-class focus-visible:ring-purple-1 focus-visible:ring-1 focus-visible:ring-offset-0"
+                      placeholder="What's your podcast name?"
+                      {...field}
+                    />
                   </FormControl>
-                  <FormMessage className="text-white-1" />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
-            <div className="flex flex-col gap-2.5">
-              <Label className="text-16 font-bold text-white-1">
+
+            <div className="flex flex-col gap-3">
+              <Label className="text-[15px] font-semibold text-white-1">
                 Select your podcast&apos;s voice
               </Label>
               <Select onValueChange={(value) => setVoiceType(value.toLowerCase())}>
-                <SelectTrigger className={cn('text-16 w-full border-none bg-black-1 text-gray-1 focus:ring-orange-1 focus:outline-none focus:ring-offset-0 focus:ring-2')}>
+                <SelectTrigger className={cn('text-[15px] w-full border border-black-4 bg-black-2 text-gray-1 rounded-apple focus:ring-purple-1 focus:border-purple-1 focus:ring-1')}>
                   <SelectValue placeholder="No voice selected" />
                 </SelectTrigger>
-                <SelectContent className="text-16 border-none bg-black-1 font-bold text-white-1">
+                <SelectContent className="text-[15px] border border-black-4 bg-black-2 text-white-1 rounded-apple">
                   {voiceCategories.map((voice) => (
-                    <SelectItem key={voice} value={voice} className="capitalize focus:bg-orange-1">
+                    <SelectItem key={voice} value={voice} className="capitalize focus:bg-purple-1 rounded-lg">
                       {voice}
                     </SelectItem>
                   ))}
@@ -152,21 +149,27 @@ const CreatePodcast = () => {
                 )}
               </Select>
             </div>
+
             <FormField
               control={form.control}
               name="podcastDescription"
               render={({ field }) => (
-                <FormItem className="flex flex-col gap-2.5 ">
-                  <FormLabel className="text-16 font-bold text-white-1">Description</FormLabel>
+                <FormItem className="flex flex-col gap-3">
+                  <FormLabel className="text-[15px] font-semibold text-white-1">Description</FormLabel>
                   <FormControl>
-                    <Textarea className="input-class focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-1 focus-visible:ring-offset-0" placeholder="What's your podcast about?" {...field} />
+                    <Textarea
+                      className="input-class min-h-[120px] focus-visible:ring-purple-1 focus-visible:ring-1 focus-visible:ring-offset-0"
+                      placeholder="What's your podcast about?"
+                      {...field}
+                    />
                   </FormControl>
-                  <FormMessage className="text-white-1" />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
           </div>
-          <div className="flex flex-col pt-10">
+
+          <div className="flex flex-col pt-10 gap-8">
             <GeneratePodcast
               setAudioStorageId={setAudioStorageId}
               setAudio={setAudioURL}
@@ -187,15 +190,18 @@ const CreatePodcast = () => {
             />
 
 
-            <div className="mt-10 w-full">
-              <Button type="submit" className="text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1">
+            <div className="mt-6 w-full">
+              <Button
+                type="submit"
+                className="w-full bg-purple-1 hover:bg-purple-2 text-white-1 font-semibold rounded-full h-12 transition-all duration-200 shadow-button text-[15px]"
+              >
                 {submitting ? (
                   <>
-                    Submitting
-                    <Loader size={20} className="animate-spin ml-2" />
+                    Creating Podcast
+                    <Loader size={18} className="animate-spin ml-2" />
                   </>
                 ) : (
-                  'Submit'
+                  'Create Podcast'
                 )}
               </Button>
             </div>
