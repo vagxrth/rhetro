@@ -62,10 +62,8 @@ const LeftSidebar = () => {
         <section className={cn('left_sidebar h-[calc(100vh-5px)]', { 'h-[calc(100vh-140px)]': audio?.audioURL })}>
             <div className='flex flex-col'>
                 {/* Logo */}
-                <Link href='/' className='flex cursor-pointer items-center gap-2 px-6 pb-10'>
-                    <div className='flex items-center justify-center w-8 h-8 rounded-lg bg-purple-1'>
-                        <Image src="/icons/rhetro.png" alt='logo' width={18} height={18} className='brightness-200'/>
-                    </div>
+                <Link href='/' className='flex cursor-pointer items-center gap-3 px-6 pb-10'>
+                    <Image src="/icon.png" alt='logo' width={36} height={36} className='rounded-lg'/>
                     <h1 className='text-[22px] font-bold text-white-1 tracking-tight'>Rhetro</h1>
                 </Link>
 
