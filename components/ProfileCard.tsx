@@ -59,6 +59,8 @@ const ProfileCard = ({
           <span className="text-[14px]">Channel</span>
           <span className="text-[14px]">•</span>
           <span className="text-[14px]">{podcastData?.podcasts.length || 0} Shows</span>
+          <span className="text-[14px]">•</span>
+          <span className="text-[14px]">{podcastData?.listeners?.toLocaleString() || 0} Listeners</span>
         </div>
       </div>
 
