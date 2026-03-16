@@ -45,6 +45,7 @@ const PodcastDetailPlayer = ({
   authorImageURL,
   authorId,
   _creationTime,
+  views,
 }: PodcastDetailPlayerProps) => {
   const router = useRouter();
   const { setAudio } = useAudio();
@@ -118,6 +119,8 @@ const PodcastDetailPlayer = ({
             <span>{getRelativeTime(_creationTime)}</span>
             <span>•</span>
             <span>Episode</span>
+            <span>•</span>
+            <span>{views.toLocaleString()} {views === 1 ? 'view' : 'views'}</span>
           </div>
 
           {/* Title */}

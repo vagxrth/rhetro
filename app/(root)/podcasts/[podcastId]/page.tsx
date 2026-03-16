@@ -7,9 +7,9 @@ import PodcastPlayerDetails from '@/components/PodcastPlayerDetails'
 import { api } from '@/convex/_generated/api'
 import { Id } from '@/convex/_generated/dataModel'
 import { useUser } from '@clerk/nextjs'
-import { useQuery } from 'convex/react'
+import { useMutation, useQuery } from 'convex/react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const PodcastDetails = ({ params: { podcastId } }: { params: { podcastId: Id<'podcasts'> } }) => {
 
@@ -18,8 +18,15 @@ const PodcastDetails = ({ params: { podcastId } }: { params: { podcastId: Id<'po
   const podcast = useQuery(api.podcasts.getPodcastById, { podcastId })
 
   const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, { podcastId });
+  const updateViews = useMutation(api.podcasts.updatePodcastViews);
 
   const isOwner = user?.id === podcast?.authorId;
+
+  useEffect(() => {
+    if (podcast) {
+      updateViews({ podcastId });
+    }
+  }, [podcastId]);
 
   if (!similarPodcasts || !podcast) return <LoaderSpinner />
 
