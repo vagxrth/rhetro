@@ -10,7 +10,8 @@ A cutting-edge AI podcast application that simplifies content creation. It conve
 - Next.js
 - TailwindCSS
 - Shadcn UI
-- OpenAI
+- Google TTS
+- Gemini
 - Clerk
 - Convex
 - Sentry
