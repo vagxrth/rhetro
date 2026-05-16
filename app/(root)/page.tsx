@@ -35,7 +35,7 @@ const Home = () => {
                 {/* Thumbnail Section */}
                 <div className='relative aspect-[16/9] overflow-hidden'>
                   <Image
-                    src={podcast.imageURL}
+                    src={podcast.imageURL!}
                     alt={podcast.podcastTitle}
                     fill
                     className='object-cover transition-transform duration-500 group-hover:scale-105'

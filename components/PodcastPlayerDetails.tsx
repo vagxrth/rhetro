@@ -57,7 +57,7 @@ const PodcastDetailPlayer = ({
 
   const handleDelete = async () => {
     try {
-      await deletePodcast({ podcastId, imageStorageId, audioStorageId });
+      await deletePodcast({ podcastId, imageStorageId: imageStorageId!, audioStorageId: audioStorageId! });
       toast({
         title: "Podcast deleted",
       });
@@ -89,8 +89,8 @@ const PodcastDetailPlayer = ({
   const handlePlay = () => {
     setAudio({
       title: podcastTitle,
-      audioURL,
-      imageURL,
+      audioURL: audioURL!,
+      imageURL: imageURL!,
       author,
       podcastId,
     });

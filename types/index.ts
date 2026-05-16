@@ -19,6 +19,7 @@ export interface TopPodcastersProps {
   podcast: {
     podcastTitle: string;
     podcastId: Id<"podcasts">;
+    imageURL?: string;
   }[];
   totalPodcasts: number;
 }
@@ -26,18 +27,18 @@ export interface TopPodcastersProps {
 export interface PodcastProps {
   _id: Id<"podcasts">;
   _creationTime: number;
-  audioStorageId: Id<"_storage"> | null;
+  audioStorageId?: Id<"_storage">;
   user: Id<"users">;
   podcastTitle: string;
   podcastDescription: string;
-  audioURL: string | null;
-  imageURL: string | null;
-  imageStorageId: Id<"_storage"> | null;
+  audioURL?: string;
+  imageURL?: string;
+  imageStorageId?: Id<"_storage">;
   author: string;
   authorId: string;
   authorImageURL: string;
   voicePrompt: string;
-  imagePrompt: string | null;
+  imagePrompt: string;
   voiceType: string;
   audioDuration: number;
   views: number;
@@ -78,14 +79,14 @@ export interface LatestPodcastCardProps {
 }
 
 export interface PodcastDetailPlayerProps {
-  audioURL: string;
+  audioURL?: string;
   podcastTitle: string;
   author: string;
   isOwner: boolean;
-  imageURL: string;
+  imageURL?: string;
   podcastId: Id<"podcasts">;
-  imageStorageId: Id<"_storage">;
-  audioStorageId: Id<"_storage">;
+  imageStorageId?: Id<"_storage">;
+  audioStorageId?: Id<"_storage">;
   authorImageURL: string;
   authorId: string;
   _creationTime: number;
